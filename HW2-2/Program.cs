@@ -24,7 +24,7 @@ namespace HW2_2
         {
             int min = 0;                            //O(1)
             int max = inputArray.Length - 1;        //O(1)
-            while (min <= max)                      //O(N)
+            while (min <= max)                      //O(N/2)
             {
                 int mid = (min + max) / 2;              //O(1)
 
@@ -43,5 +43,5 @@ namespace HW2_2
             }
             return -1;                              //O(1)
         }
-    }                       //O(1+1+N*(1+1)) = O(N)
+    }                       //O(1+1+N/2*(1+1)) = O(N/2)
 }
