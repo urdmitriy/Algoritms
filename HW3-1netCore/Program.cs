@@ -16,7 +16,7 @@ namespace HW3_1netCore
     }
     public class BenchmarkClass
     {
-        static int quantity = 1000;
+        static int quantity = 100000;
 
         public int[,] dot1 = new int[quantity, 2];
         public int[,] dot2 = new int[quantity, 2];
@@ -40,13 +40,13 @@ namespace HW3_1netCore
         {
             float x = pointOne.X - pointTwo.X;
             float y = pointOne.Y - pointTwo.Y;
-            return (float)MathF.Sqrt((x * x) + (y * y));
+            return MathF.Sqrt((x * x) + (y * y));
         }
         public float PointDistanceFloatStruct(PointStructFloat pointOne, PointStructFloat pointTwo)
         {
             float x = pointOne.X - pointTwo.X;
             float y = pointOne.Y - pointTwo.Y;
-            return (float)MathF.Sqrt((x * x) + (y * y));
+            return MathF.Sqrt((x * x) + (y * y));
         }
         public double PointDistanceDoubleStruct(PointStructDouble pointOne, PointStructDouble pointTwo)
         {
