@@ -1,0 +1,24 @@
+ROOT:55
+Left for 55  --> 19
+Left for 19  --> 15
+Left for 15  --> 9
+Right for 15 --> 16
+Right for 19 --> 36
+Left for 36  --> 30
+Right for 36 --> 48
+Left for 48  --> 42
+Right for 42 --> 44
+Right for 48 --> 51
+Right for 55 --> 98
+============ Удаляем 48 ==========
+ROOT:55
+Left for 55  --> 19
+Left for 19  --> 15
+Left for 15  --> 9
+Right for 15 --> 16
+Right for 19 --> 36
+Left for 36  --> 30
+Right for 36 --> 42
+Right for 42 --> 44
+Right for 44 --> 51
+Right for 55 --> 98

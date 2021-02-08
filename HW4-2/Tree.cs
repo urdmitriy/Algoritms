@@ -13,7 +13,7 @@ namespace HW4_2
 
         public int height { get; set; }
 
-        
+
         public BinaryTree()
         {
 
@@ -28,7 +28,7 @@ namespace HW4_2
         {
             return node.Right.height - node.Left.height;
         }
-        
+
         public void fixHeight(BinaryTree node)
         {
             int hl = node.Left.height;
@@ -38,7 +38,7 @@ namespace HW4_2
             else
                 node.height = hr + 1;
         }
-        
+
         public void rotateRight(int nodeValue)
         {
             BinaryTree node = new BinaryTree();
@@ -52,6 +52,7 @@ namespace HW4_2
 
             node = newNode;
         }
+        
         public void Insert(int data)
         {
             if (Data == 0 || Data == data)
@@ -77,68 +78,68 @@ namespace HW4_2
                     Right = new BinaryTree(data);
                     Right.Parent = this;
                 }
-                    
+
                 else
                     Right.Insert(data);
             }
         }
         public void Delete(int value)
-    {
-        BinaryTree DelTree = new BinaryTree();
-
-        DelTree = Find(value);
-
-        //Если у узла нет дочерних элементов
-        if (DelTree.Left == null && DelTree.Right == null)
         {
-            if (DelTree.Parent.Left.Data == value)
-                DelTree.Parent.Left = null;
-            if (DelTree.Parent.Right.Data == value)
-                DelTree.Parent.Right = null;
-            return;
-        }
+            BinaryTree DelTree = new BinaryTree();
 
-        //Если нет левого дочернего
-        if (DelTree.Left == null)
-        {
-            DelTree.Right.Parent = DelTree.Parent;
-            if (DelTree.Parent.Left.Data == value)
-                DelTree.Parent.Left = DelTree.Right;
-            if (DelTree.Parent.Right.Data == value)
-                DelTree.Parent.Right = DelTree.Right;
-            return;
-        }            
-            
-        //Если нет правого дочернего
-        if (DelTree.Right == null)
-        {
-            DelTree.Left.Parent = DelTree.Parent;
+            DelTree = Find(value);
+
+            //Если у узла нет дочерних элементов
+            if (DelTree.Left == null && DelTree.Right == null)
+            {
+                if (DelTree.Parent.Left.Data == value)
+                    DelTree.Parent.Left = null;
+                if (DelTree.Parent.Right.Data == value)
+                    DelTree.Parent.Right = null;
+                return;
+            }
+
+            //Если нет левого дочернего
+            if (DelTree.Left == null)
+            {
+                DelTree.Right.Parent = DelTree.Parent;
+                if (DelTree.Parent.Left.Data == value)
+                    DelTree.Parent.Left = DelTree.Right;
+                if (DelTree.Parent.Right.Data == value)
+                    DelTree.Parent.Right = DelTree.Right;
+                return;
+            }
+
+            //Если нет правого дочернего
+            if (DelTree.Right == null)
+            {
+                DelTree.Left.Parent = DelTree.Parent;
+                if (DelTree.Parent.Left.Data == value)
+                    DelTree.Parent.Left = DelTree.Left;
+                if (DelTree.Parent.Right.Data == value)
+                    DelTree.Parent.Right = DelTree.Left;
+                return;
+            }
+
+            //Если присутствуют оба дочерних узла
+            //то правый ставим на место удаляемого
+            //а левый вставляем в правый
+
             if (DelTree.Parent.Left.Data == value)
                 DelTree.Parent.Left = DelTree.Left;
             if (DelTree.Parent.Right.Data == value)
                 DelTree.Parent.Right = DelTree.Left;
-            return;
+            DelTree.Left.Parent = DelTree.Parent;
+
+            BinaryTree LastRightNode = new BinaryTree();
+            LastRightNode = DelTree.Left;
+            while (LastRightNode.Right != null)
+            {
+                LastRightNode = LastRightNode.Right;
+            }
+            DelTree.Right.Parent = LastRightNode;
+            LastRightNode.Right = DelTree.Right;
         }
-
-        //Если присутствуют оба дочерних узла
-        //то правый ставим на место удаляемого
-        //а левый вставляем в правый
-
-        if (DelTree.Parent.Left.Data == value)
-            DelTree.Parent.Left = DelTree.Left;
-        if (DelTree.Parent.Right.Data == value)
-            DelTree.Parent.Right = DelTree.Left;
-        DelTree.Left.Parent = DelTree.Parent;
-
-        BinaryTree LastRightNode = new BinaryTree();
-        LastRightNode = DelTree.Left;
-        while (LastRightNode.Right != null)
-        {
-            LastRightNode = LastRightNode.Right;
-        }
-        DelTree.Right.Parent = LastRightNode;
-        LastRightNode.Right = DelTree.Right;
-    }
 
         public BinaryTree Find(int value)
         {
